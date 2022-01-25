@@ -18,13 +18,14 @@ for host, user, password in SERVER:
         print("Connection Error")
     
     else:
-        tn = telnetlib.Telnet(host)
+        tn = telnetlib.Telnet(host) #텔넷 로그인
         tn.read_until(b"Username: ",3)
         tn.write(user.encode('ascii') + b'\r\n')
         tn.read_until(b"Password: ",3)
         tn.write(password.encode('ascii') + b'\r\n')
-        tn.write(b' show ntp server status\n')
+        tn.write(b' show ntp server status\n') #명령어
         tn.write(b' exit\n')
 
 
         print(tn.read_all().decode('ascii'))
+
